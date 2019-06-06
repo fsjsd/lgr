@@ -1,0 +1,26 @@
+{
+  "name": "lgr",
+  "version": "1.0.0",
+  "description": "magical javascript logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsjsd/lgr.git"
+  },
+  "keywords": [
+    "console",
+    "logger",
+    "logging",
+    "react",
+    "javascript"
+  ],
+  "author": "Chris Webb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fsjsd/lgr/issues"
+  },
+  "homepage": "https://github.com/fsjsd/lgr#readme"
+}
