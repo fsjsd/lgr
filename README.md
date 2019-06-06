@@ -1,0 +1,2 @@
+# lgr
+magical javascript logger
