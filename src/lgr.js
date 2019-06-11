@@ -58,19 +58,16 @@ const outputs = function(config) {
 
 // declare 'base' logger as a higher order function accepting config
 // as a pass-through argument
-const loggerBase = config => outputs(config);
+const lgr = config => outputs(config);
 
 // but attach each log method as direct methods onto the base function itself
 // so each method can be called directly on the function itself it there is
 // no config to pass through
-levels.map(
-  level => (loggerBase[level] = (...args) => outputs()[level](...args))
-);
+levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
 
 const lgrBrowser = () => {
   registerWriterMiddleware(consoleWriter);
-  return loggerBase;
+  return lgr;
 };
 
-export { registerWriterMiddleware, lgrBrowser };
-export default loggerBase;
+export { lgr, registerWriterMiddleware, lgrBrowser };
