@@ -1,5 +1,14 @@
-const makeStyle = ({ backgroundColor = "black", color = "white" } = {}) => {
-  return `background-color:${backgroundColor};color:${color};border-radius:3px;padding:2px 4px;margin-left:2px;`;
+const makeStyle = (
+  { backgroundColor = "black", color = "white" } = {},
+  i = 0
+) => {
+  const fontsize = `$1.${5 * i}rem`;
+  if (i > 0) {
+    // dynamically change color
+  }
+  return `background-color:${backgroundColor};color:${color};border-radius:3px;padding:2px 4px;margin-left:2px;font-size:${fontsize};font-weight:${
+    i === 0 ? "bold" : "normal"
+  }`;
 };
 
 const transformConsoleArgs = config => (...args) => {
@@ -11,7 +20,7 @@ const transformConsoleArgs = config => (...args) => {
         ? [`%c${config.meta}`, makeStyle(config)]
         : [
             config.meta.map(meta => `%c${meta}`).join(""),
-            ...config.meta.map(meta => makeStyle(config))
+            ...config.meta.map((meta, i) => makeStyle(config, i))
           ];
 
     //console.log("ARGDEBUG", [...metaArgs, ...args]);

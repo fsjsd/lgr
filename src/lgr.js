@@ -1,6 +1,3 @@
-import consoleWriter from "./consoleWriter";
-import htmlDomWriter from "./htmlDomWriter";
-
 const globalConfig = { disabled: false, disableInProduction: true };
 
 const writerMiddlewares = [];
@@ -12,7 +9,7 @@ const registerWriterMiddleware = middleware => {
       globalConfig.disableInProduction &&
       process &&
       process.env &&
-      process.env.NODE_ENV == "production"
+      process.env.NODE_ENV === "production"
     ) &&
     middleware.isAvailableInEnvironment(globalConfig)
   ) {
@@ -30,6 +27,10 @@ const transformArgs = config => (...args) => {
 
   if (config.smile) {
     return [":)", ...args];
+  }
+
+  if (config.timestamp) {
+    return [new Date().toTimeString(), ...args];
   }
 
   // untouched
@@ -65,9 +66,4 @@ const lgr = config => outputs(config);
 // no config to pass through
 levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
 
-const lgrBrowser = () => {
-  registerWriterMiddleware(consoleWriter);
-  return lgr;
-};
-
-export { lgr, registerWriterMiddleware, lgrBrowser };
+export { lgr, registerWriterMiddleware };

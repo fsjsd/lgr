@@ -1,13 +1,13 @@
 {
-  "name": "lgr",
-  "version": "1.0.0",
+  "name": "fsjsd-lgr",
+  "version": "0.0.4",
   "description": "magical javascript logger",
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "npm run release",
     "release": "npm run build:dev && npm run build:prod",
-    "build:dev": "NODE_ENV=development rollup -c",
-    "build:prod": "NODE_ENV=production rollup -c"
+    "build:dev": "SET NODE_ENV=development rollup -c",
+    "build:prod": "SET NODE_ENV=production rollup -c"
   },
   "repository": {
     "type": "git",
