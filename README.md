@@ -56,7 +56,7 @@ lgr.debug("outputs to console and page");
 
 ### Magical logging options
 
-Moden browser logging features work like objects, destructuring and object parameters:
+Modern browser logging features work like objects, destructuring and object parameters:
 
 ```javascript
 lgr.log(demoObj, { a, b }, someVal);
