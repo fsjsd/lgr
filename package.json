@@ -6,8 +6,8 @@
   "scripts": {
     "prepublishOnly": "npm run release",
     "release": "npm run build:dev && npm run build:prod",
-    "build:dev": "SET NODE_ENV=development rollup -c",
-    "build:prod": "SET NODE_ENV=production rollup -c"
+    "build:dev": "SET NODE_ENV=development && rollup -c",
+    "build:prod": "SET NODE_ENV=production && rollup -c"
   },
   "repository": {
     "type": "git",

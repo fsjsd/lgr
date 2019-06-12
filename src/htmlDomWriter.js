@@ -71,10 +71,18 @@ const makeEl = ({ tag, style, attrs, html, children, refOut, events } = {}) => {
 };
 
 const initialise = () => {
+  let existingOutput = document.getElementById("lgr_html_dom_writer__");
+
+  // don't remount
+  if (existingOutput) {
+    return;
+  }
+
   //writerOutputEl;
   const wrapper = makeEl({
     tag: "DIV", // WRAPPER
     attrs: {
+      id: "lgr_html_dom_writer__",
       draggable: "draggable"
     },
     style: {
