@@ -2,8 +2,9 @@
 
 magical javascript logger
 
-- Colorize log statements by type!
-- Extend output sources with middleware!
+- Colorize log statements by level
+- Extend output sources with custom transports
+- client side focus
 
 [![Edit lgr](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lgr-6fxyr?fontsize=14)
 
@@ -60,8 +61,6 @@ Moden browser logging features work like objects, destructuring and object param
 ```javascript
 lgr.log(demoObj, { a, b }, someVal);
 ```
-
-
 
 ## Code your own log writer!
 
