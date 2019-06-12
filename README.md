@@ -4,7 +4,7 @@ magical javascript logger
 
 - Colorize log statements by level
 - Extend output sources with custom transports
-- client side focus
+- Primarily focused on client side development, easily configurable for node logging
 
 [![Edit lgr](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lgr-6fxyr?fontsize=14)
 
