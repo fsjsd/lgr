@@ -1,16 +1,16 @@
-import { lgr, registerWriterMiddleware } from "./lgr";
-import consoleWriter from "./consoleWriter";
-import htmlDomWriter from "./htmlDomWriter";
+import { lgr, registerTransport } from "./lgr";
+import consoleTransport from "./consoleTransport";
+import htmlDomTransport from "./htmlDomTransport";
 
 const lgrBrowser = () => {
-  registerWriterMiddleware(consoleWriter);
+  registerTransport(consoleTransport);
   return lgr;
 };
 
 export default {
   lgr,
   lgrBrowser,
-  htmlDomWriter,
-  consoleWriter,
-  registerWriterMiddleware
+  consoleTransport,
+  htmlDomTransport,
+  registerTransport
 };

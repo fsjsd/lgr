@@ -1,18 +1,26 @@
 {
   "name": "fsjsd-lgr",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "magical javascript logger",
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "npm run release",
     "release": "npm run build:dev && npm run build:prod",
-    "build:dev": "SET NODE_ENV=development && rollup -c",
-    "build:prod": "SET NODE_ENV=production && rollup -c"
+    "build:dev": "SET NODE_ENV=development&& rollup -c",
+    "build:prod": "SET NODE_ENV=production&& rollup -c",
+    "test": "jest",
+    "testdev": "jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fsjsd/lgr.git"
   },
+  "bugs": {
+    "url": "https://github.com/fsjsd/lgr/issues"
+  },
+  "homepage": "https://github.com/fsjsd/lgr#readme",
+  "author": "Chris Webb",
+  "license": "MIT",
   "keywords": [
     "console",
     "logger",
@@ -21,21 +29,29 @@
     "javascript"
   ],
   "devDependencies": {
-    "@babel/core": "7.4.5",
+    "@babel/core": "^7.4.5",
     "@babel/preset-env": "7.4.5",
+    "babel-jest": "^24.8.0",
     "enzyme": "3.10.0",
-    "enzyme-adapter-react-16": "1.14.0",
     "jest": "24.8.0",
+    "prettier": "^1.18.2",
     "rollup": "^1.15.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.1",
     "rollup-plugin-replace": "^2.2.0"
   },
-  "author": "Chris Webb",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fsjsd/lgr/issues"
-  },
-  "homepage": "https://github.com/fsjsd/lgr#readme"
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "transform": {
+      "\\.js$": "babel-jest"
+    }
+  }
 }

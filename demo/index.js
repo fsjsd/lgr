@@ -1,5 +1,5 @@
-import { lgrBrowser, registerWriterMiddleware } from "../lib/lgr";
-import htmlDomWriter from "../lib/htmlDomWriter";
+import { lgrBrowser, registerTransport } from "../lib/lgr";
+import htmlDomTransport from "../lib/htmlDomTransport";
 
 let demoObj = {
   a: "objects",
@@ -13,7 +13,7 @@ let lgr = lgrBrowser();
 
 //console.log(lgr());
 
-registerWriterMiddleware(htmlDomWriter);
+registerTransport(htmlDomTransport);
 
 lgr.log("hello");
 lgr.debug("world");

@@ -1,8 +1,8 @@
 const globalConfig = { disabled: false, disableInProduction: true };
 
-const writerMiddlewares = [];
+const transports = [];
 
-const registerWriterMiddleware = middleware => {
+const registerTransport = transport => {
   if (
     !globalConfig.disabled &&
     !(
@@ -11,10 +11,10 @@ const registerWriterMiddleware = middleware => {
       process.env &&
       process.env.NODE_ENV === "production"
     ) &&
-    middleware.isAvailableInEnvironment(globalConfig)
+    transport.isAvailableInEnvironment(globalConfig)
   ) {
-    middleware.initialise();
-    writerMiddlewares.push(middleware);
+    transport.initialise();
+    transports.push(transport);
   }
 };
 
@@ -37,12 +37,12 @@ const transformArgs = config => (...args) => {
   return args;
 };
 
-// enumerate writers and call the log method on each, applying
+// enumerate transports and call the log method on each, applying
 // default transforms to args before each writer manipulates further
-const dispatchToWriters = (level, config) => (...args) => {
+const dispatchToTransports = (level, config) => (...args) => {
   // this is essentially compose()
-  writerMiddlewares.map(writer =>
-    writer.dispatch(level, config)(...transformArgs(config)(...args))
+  transports.map(transport =>
+    transport.dispatch(level, config)(...transformArgs(config)(...args))
   );
 };
 
@@ -50,10 +50,10 @@ const levels = ["log", "debug", "error", "warn", "fatal"];
 
 const outputs = function(config) {
   return {
-    log: (...args) => dispatchToWriters("log", config)(...args),
-    debug: (...args) => dispatchToWriters("debug", config)(...args),
-    error: (...args) => dispatchToWriters("error", config)(...args),
-    warn: (...args) => dispatchToWriters("warn", config)(...args)
+    log: (...args) => dispatchToTransports("log", config)(...args),
+    debug: (...args) => dispatchToTransports("debug", config)(...args),
+    error: (...args) => dispatchToTransports("error", config)(...args),
+    warn: (...args) => dispatchToTransports("warn", config)(...args)
   };
 };
 
@@ -66,4 +66,4 @@ const lgr = config => outputs(config);
 // no config to pass through
 levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
 
-export { lgr, registerWriterMiddleware };
+export { lgr, registerTransport };
