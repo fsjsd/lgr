@@ -1,5 +1,8 @@
-import { lgrBrowser, registerTransport } from "../lib/lgr";
-import htmlDomTransport from "../lib/htmlDomTransport";
+import {
+  lgrBrowser,
+  htmlDomTransport,
+  registerTransport
+} from "../src/exports";
 
 let demoObj = {
   a: "objects",
@@ -20,8 +23,9 @@ lgr.debug("world");
 lgr.error("uh oh");
 lgr.log(demoObj);
 lgr({ smile: true }).debug("pass log config!");
+lgr({ timestamp: true }).debug("pass log config!");
 
-let myLogger = lgr({ meta: "somelogger" });
+let myLogger = lgr({ meta: "somelogger", timestamp: true });
 myLogger.debug("magic");
 myLogger.debug("log");
 myLogger.debug("formatting!");
@@ -35,3 +39,8 @@ colorLogger.debug("color");
 colorLogger.debug("me");
 colorLogger.debug("happy");
 colorLogger.debug(demoObj);
+
+lgr({ meta: ["a", "colors"] }).log("random");
+lgr({ meta: ["b", "colors"] }).log("colors");
+lgr({ meta: ["c", "colors"] }).log("each");
+lgr({ meta: ["d", "colors"] }).log("time");

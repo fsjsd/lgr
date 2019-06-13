@@ -1,3 +1,5 @@
+import { getTimeStamp } from "./utils";
+
 const globalConfig = { disabled: false, disableInProduction: true };
 
 const transports = [];
@@ -30,7 +32,7 @@ const transformArgs = config => (...args) => {
   }
 
   if (config.timestamp) {
-    return [new Date().toTimeString(), ...args];
+    return [getTimeStamp(), ...args];
   }
 
   // untouched

@@ -1,20 +1,33 @@
+import { getColor } from "../utils";
+
 let writerOutputEl = null;
 
 const makeStyle = (
-  { backgroundColor = "black", color = "white" } = {},
+  { backgroundColor = null, color = "white" } = {},
+  meta = "",
   i = 0
 ) => {
-  return `display:inline-block;background-color:${backgroundColor};color:${color};border-radius:3px;padding:2px 4px;margin-left:2px;`;
+  const bgColor =
+    backgroundColor === null ? getColor(meta, i) : backgroundColor;
+  return `display:inline-block;background-color:${bgColor};color:${color};border-radius:3px;padding:2px 4px;margin-left:2px;`;
 };
+
 const transformConsoleArgs = config => (...args) => {
   if (config === undefined) return args;
 
   if (config.meta) {
     const metaArgs =
       typeof config.meta === "string"
-        ? `<div style="${makeStyle()}">${config.meta}</div>`
+        ? `<div style="${makeStyle(config, config.meta)}">${config.meta}</div>`
         : config.meta
-            .map(meta => `<div style="${makeStyle(config)}">${meta}</div>`)
+            .map(
+              (meta, i) =>
+                `<div style="${makeStyle(
+                  config,
+                  config.meta[0],
+                  i
+                )}">${meta}</div>`
+            )
             .join("");
 
     //console.log("ARGDEBUG", [...metaArgs, ...args]);
@@ -96,7 +109,8 @@ const initialise = () => {
       right: "0px",
       overflow: "hidden",
       border: "solid 1px #007fe0",
-      "font-size": "12px"
+      "font-size": "12px",
+      "font-family": "Helvetica, arial"
     },
     children: [
       {

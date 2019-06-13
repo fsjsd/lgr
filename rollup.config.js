@@ -4,10 +4,30 @@ import resolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
-const outputFile = NODE_ENV === "production" ? "./lib/prod.js" : "./lib/dev.js";
+
+let inputFile = "";
+let outputFile = "";
+
+switch (NODE_ENV) {
+  case "demo":
+    inputFile = "./demo/index.js";
+    outputFile = "./lib/demo.js";
+    break;
+  case "production":
+    inputFile = "./src/exports.js";
+    outputFile = "./lib/prod.js";
+    break;
+  case "development":
+  default:
+    inputFile = "./src/exports.js";
+    outputFile = "./lib/dev.js";
+    break;
+}
+
+console.log("rollup", NODE_ENV, inputFile, outputFile);
 
 export default {
-  input: "./src/exports.js",
+  input: inputFile,
   output: {
     file: outputFile,
     format: "cjs"

@@ -1,13 +1,13 @@
 import { lgr, registerTransport } from "./lgr";
-import consoleTransport from "./consoleTransport";
-import htmlDomTransport from "./htmlDomTransport";
+import consoleTransport from "./transports/consoleTransport";
+import htmlDomTransport from "./transports/htmlDomTransport";
 
 const lgrBrowser = () => {
   registerTransport(consoleTransport);
   return lgr;
 };
 
-export default {
+export {
   lgr,
   lgrBrowser,
   consoleTransport,

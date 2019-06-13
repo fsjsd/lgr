@@ -8,6 +8,7 @@
     "release": "npm run build:dev && npm run build:prod",
     "build:dev": "SET NODE_ENV=development&& rollup -c",
     "build:prod": "SET NODE_ENV=production&& rollup -c",
+    "build:demo": "SET NODE_ENV=demo&& rollup -c",
     "test": "jest",
     "testdev": "jest --watch"
   },
@@ -32,6 +33,7 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "7.4.5",
     "babel-jest": "^24.8.0",
+    "cross-env": "^5.2.0",
     "enzyme": "3.10.0",
     "jest": "24.8.0",
     "prettier": "^1.18.2",
