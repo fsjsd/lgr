@@ -39,10 +39,15 @@ const getTimeStamp = () => {
   getMilliseconds() - Returns the milliseconds (0-999).
   */
   let now = new Date();
-  return `${now.getHours().padStart(2, "0")}:${now
+  return `${now
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${now
     .getMinutes()
+    .toString()
     .padStart(2, "0")}:${now
     .getSeconds()
+    .toString()
     .padStart(2, "0")}.${now.getMilliseconds()}`;
 };
 

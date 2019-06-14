@@ -1,6 +1,6 @@
 {
   "name": "fsjsd-lgr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "magical javascript logger",
   "main": "index.js",
   "scripts": {
