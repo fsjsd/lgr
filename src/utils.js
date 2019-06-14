@@ -39,7 +39,11 @@ const getTimeStamp = () => {
   getMilliseconds() - Returns the milliseconds (0-999).
   */
   let now = new Date();
-  return `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}.${now.getMilliseconds()}`;
+  return `${now.getHours().padStart(2, "0")}:${now
+    .getMinutes()
+    .padStart(2, "0")}:${now
+    .getSeconds()
+    .padStart(2, "0")}.${now.getMilliseconds()}`;
 };
 
 export { getColor, getTimeStamp };

@@ -1,6 +1,6 @@
 import { getColor } from "../utils";
 
-const makeStyle = (
+const makeLogStyle = (
   { backgroundColor = null, color = "white" } = {},
   meta = "",
   i = 0
@@ -20,11 +20,11 @@ const transformConsoleArgs = config => (...args) => {
   if (config.meta) {
     const metaArgs =
       typeof config.meta === "string"
-        ? [`%c${config.meta}`, makeStyle(config, config.meta)]
+        ? [`%c${config.meta}`, makeLogStyle(config, config.meta)]
         : [
             config.meta.map(meta => `%c${meta}`).join(""),
             ...config.meta.map((meta, i) =>
-              makeStyle(config, config.meta[0], i)
+              makeLogStyle(config, config.meta[0], i)
             )
           ];
 

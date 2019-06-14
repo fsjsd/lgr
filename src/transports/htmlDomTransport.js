@@ -2,7 +2,7 @@ import { getColor } from "../utils";
 
 let writerOutputEl = null;
 
-const makeStyle = (
+const makeLogStyle = (
   { backgroundColor = null, color = "white" } = {},
   meta = "",
   i = 0
@@ -18,11 +18,13 @@ const transformConsoleArgs = config => (...args) => {
   if (config.meta) {
     const metaArgs =
       typeof config.meta === "string"
-        ? `<div style="${makeStyle(config, config.meta)}">${config.meta}</div>`
+        ? `<div style="${makeLogStyle(config, config.meta)}">${
+            config.meta
+          }</div>`
         : config.meta
             .map(
               (meta, i) =>
-                `<div style="${makeStyle(
+                `<div style="${makeLogStyle(
                   config,
                   config.meta[0],
                   i
@@ -49,6 +51,12 @@ const isAvailableInEnvironment = () => {
   return window !== undefined && window.document !== undefined;
 };
 
+const makeStyle = styles => {
+  return Object.keys(styles)
+    .map(cssProp => `${cssProp}:${styles[cssProp]}`)
+    .join(";");
+};
+
 const makeEl = ({ tag, style, attrs, html, children, refOut, events } = {}) => {
   let el = document.createElement(tag);
 
@@ -57,9 +65,7 @@ const makeEl = ({ tag, style, attrs, html, children, refOut, events } = {}) => {
   }
 
   if (style) {
-    let styleVal = Object.keys(style)
-      .map(cssProp => `${cssProp}:${style[cssProp]}`)
-      .join(";");
+    let styleVal = makeStyle(style);
     el.setAttribute("style", styleVal);
   }
 
@@ -72,6 +78,12 @@ const makeEl = ({ tag, style, attrs, html, children, refOut, events } = {}) => {
     for (let attr in attrs) {
       let attrVal = attrs[attr];
       el.setAttribute(attr, attrVal);
+    }
+  }
+
+  if (events) {
+    for (let ev in events) {
+      el.addEventListener(ev, events[ev]);
     }
   }
 
@@ -133,11 +145,18 @@ const initialise = () => {
           },
           {
             tag: "DIV",
-            html: "•",
+            html: "&#0149;",
             style: {
               "align-self": "flex-end",
               "font-size": "20px",
-              "line-height": "0.5pt"
+              "line-height": "0.5pt",
+              height: "14px",
+              "letter-spacing": "0.5pt"
+            },
+            events: {
+              click: () => {
+                writerOutputEl.innerHTML = "ACCESS";
+              }
             }
           }
         ]
