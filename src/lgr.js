@@ -4,6 +4,10 @@ const globalConfig = { disabled: false, disableInProduction: true };
 
 const transports = [];
 
+const clearTransports = () => {
+  transports.length = 0;
+};
+
 const registerTransport = transport => {
   if (
     !globalConfig.disabled &&
@@ -42,6 +46,9 @@ const transformArgs = config => (...args) => {
 // enumerate transports and call the log method on each, applying
 // default transforms to args before each writer manipulates further
 const dispatchToTransports = (level, config) => (...args) => {
+  if (process.env.NODE_ENV !== "production" && transports.length === 0) {
+    throw new Error("lgr: No logging transports defined");
+  }
   // this is essentially compose()
   transports.map(transport =>
     transport.dispatch(level, config)(...transformArgs(config)(...args))
@@ -68,4 +75,4 @@ const lgr = config => outputs(config);
 // no config to pass through
 levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
 
-export { lgr, registerTransport };
+export { lgr, registerTransport, clearTransports };

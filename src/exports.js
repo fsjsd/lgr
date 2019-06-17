@@ -1,4 +1,4 @@
-import { lgr, registerTransport } from "./lgr";
+import { lgr, registerTransport, clearTransports } from "./lgr";
 import consoleTransport from "./transports/consoleTransport";
 import htmlDomTransport from "./transports/htmlDomTransport";
 
@@ -12,5 +12,6 @@ export {
   lgrBrowser,
   consoleTransport,
   htmlDomTransport,
-  registerTransport
+  registerTransport,
+  clearTransports
 };
