@@ -1,5 +1,8 @@
 # lgr
 
+[![Build Status](https://travis-ci.org/fsjsd/lgr.svg?branch=master)](https://travis-ci.org/fsjsd/fsjsd-lgr)
+ [![npm version](http://img.shields.io/npm/v/fsjsd-lgr.svg?style=flat)](https://npmjs.org/package/fsjsd-lgr "View this project on npm")
+
 magical javascript logger
 
 - Colorize log statements by level
@@ -39,17 +42,17 @@ logger.info("world");
 logger.error("whoops");
 ```
 
-For other output writers, import lgr and registerWriterMiddleware to setup writers:
+For other output writers, import lgr and registerTransport to setup writers:
 
 ```javascript
-import { lgr, consoleWriter, htmlDomWriter, registerWriterMiddleware } from "fsjsd-lgr";
+import { lgr, consoleTransport, htmlDomTransport, registerTransport } from "fsjsd-lgr";
 ```
 
-register writer middleware first, then dispatch as before:
+register output transports first, then dispatch as before:
 
 ```javascript
-registerWriterMiddleware(consoleWriter);
-registerWriterMiddleware(htmlDomWriter);
+registerTransport(consoleTransport);
+registerTransport(htmlDomTransport);
 
 lgr.debug("outputs to console and page");
 ```
@@ -64,7 +67,7 @@ lgr.log(demoObj, { a, b }, someVal);
 
 ## Code your own log writer!
 
-You can easily extend lgr to add your own outputs. Clone this repository and take a look at consoleWriter and htmlDomWriter to see how it's done.
+You can easily extend lgr to add your own outputs. Clone this repository and take a look at consoleTransport and htmlDomTransport to see how it's done.
 
 Essentially, you need to implement three methods and export them:
 
@@ -80,7 +83,7 @@ initialise()
 
 Also called on first use if isAvailableInEnvironment() returns true.
 
-Use this to perform any one-time setup operations. For instance, htmlDomWriter implements this to mount a DOM element for log outputs to the page.
+Use this to perform any one-time setup operations. For instance, htmlDomTransport implements this to mount a DOM element for log outputs to the page.
 
 ```javascript
 dispatch()
@@ -106,9 +109,9 @@ If your use case is simple, just grab args and output them to your medium of cho
 
 lgr will automatically disable output in production builds where NODE_ENV === 'production'
 
-if you're using consoleWriter, output will gracefully fail if window.console doesn't exist.
+if you're using consoleTransport, output will gracefully fail if window.console doesn't exist.
 
-htmlDomWriter will also gracefully fail if window.document is unavailable.
+htmlDomTransport will also gracefully fail if window.document is unavailable.
 
 ## Authors
 
