@@ -3,9 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "modules": false
+        "modules": "auto"
       }
-    ]
+    ],
+    "jest"
   ],
   "plugins": []
 }
