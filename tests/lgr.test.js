@@ -23,6 +23,9 @@ test("Basic logging does not throw error", () => {
   clearTransports();
   const lgr = lgrBrowser();
   lgr.debug("hello");
+  lgr.warn("hello");
+  lgr.error("hello");
+  lgr.log("hello");
 });
 
 const consoleDuckPunch = outFn => {

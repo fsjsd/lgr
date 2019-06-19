@@ -6,31 +6,12 @@ import minify from "rollup-plugin-babel-minify";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 
-let inputFile = "";
-let outputFile = "";
-
-switch (NODE_ENV) {
-  case "demo":
-    inputFile = "./demo/index.js";
-    outputFile = "./lib/demo.js";
-    break;
-  case "production":
-    inputFile = "./src/exports.js";
-    outputFile = "./lib/prod.js";
-    break;
-  case "development":
-  default:
-    inputFile = "./src/exports.js";
-    outputFile = "./lib/dev.js";
-    break;
-}
-
-console.log("rollup", NODE_ENV, inputFile, outputFile);
+console.log("rollup", NODE_ENV);
 
 export default {
-  input: inputFile,
+  input: "./demo/index.js",
   output: {
-    file: outputFile,
+    file: "./lib/demo.js",
     format: "cjs"
   },
   plugins: [
@@ -41,8 +22,7 @@ export default {
       exclude: "node_modules/**"
     }),
     resolve(),
-    commonjs(),
-    minify()
+    commonjs()
   ],
   external: id => /^react/.test(id)
 };

@@ -6,7 +6,16 @@ module.exports = {
   transform: {
     "\\.js$": "babel-jest"
   },
-  roots: ["../tests"]
+  rootDir: "../",
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!**/scripts/**",
+    "!**/lib/**",
+    "!**/demo/**"
+  ],
+  coverageReporters: ["text", "text-summary", "json", "html"]
 };
 
 /* required babel config:

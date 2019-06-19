@@ -1,3 +1,5 @@
+// NOTE: Run npm run demo to build this to ../lib/demo.js
+
 import {
   lgrBrowser,
   htmlDomTransport,
