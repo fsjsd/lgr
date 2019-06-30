@@ -1,3 +1,7 @@
+// with credit to Martin Ankerl for the idea to use the golden ratio
+// to select distinct hues from around the hue wheel.
+// https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+
 // # use golden ratio
 const golden_ratio_conjugate = 0.618033988749895;
 

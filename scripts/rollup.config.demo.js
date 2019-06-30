@@ -18,11 +18,11 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV)
     }),
+    resolve(),
+    commonjs(),
     babel({
       exclude: "node_modules/**"
-    }),
-    resolve(),
-    commonjs()
+    })
   ],
   external: id => /^react/.test(id)
 };
