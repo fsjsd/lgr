@@ -9,7 +9,7 @@ magical javascript logger
 - Extend output sources with custom transports
 - Primarily focused on client side development, easily configurable for node logging
 
-![lgr demo](https://github.com/fsjsd/lgr/edit/master/lgf.gif)
+![lgr demo](https://github.com/fsjsd/lgr/blob/master/lgr.gif?raw=true)
 
 [![Edit lgr](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lgr-6fxyr?fontsize=14)
 
