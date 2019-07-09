@@ -1,7 +1,9 @@
 # lgr
 
 [![Build Status](https://travis-ci.org/fsjsd/lgr.svg?branch=master)](https://travis-ci.org/fsjsd/fsjsd-lgr)
- [![npm version](http://img.shields.io/npm/v/fsjsd-lgr.svg?style=flat)](https://npmjs.org/package/fsjsd-lgr "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/fsjsd-lgr.svg?style=flat)](https://npmjs.org/package/fsjsd-lgr "View this project on npm")
+
+![lgr](https://github.com/fsjsd/lgr/blob/master/docs/readme-header-lgr.jpg?raw=true)
 
 magical javascript logger
 
@@ -45,7 +47,12 @@ logger.error("whoops");
 For other output writers, import lgr and registerTransport to setup writers:
 
 ```javascript
-import { lgr, consoleTransport, htmlDomTransport, registerTransport } from "fsjsd-lgr";
+import {
+  lgr,
+  consoleTransport,
+  htmlDomTransport,
+  registerTransport
+} from "fsjsd-lgr";
 ```
 
 register output transports first, then dispatch as before:
@@ -72,13 +79,13 @@ You can easily extend lgr to add your own outputs. Clone this repository and tak
 Essentially, you need to implement three methods and export them:
 
 ```javascript
-isAvailableInEnvironment()
+isAvailableInEnvironment();
 ```
 
 Called when your lgr is first used to establish whether the current environment can support your output mechanism. So if you're shipping isomorphic React for example, a fileSystemWriter would need to check whether it is running in node or the browser.
 
 ```javascript
-initialise()
+initialise();
 ```
 
 Also called on first use if isAvailableInEnvironment() returns true.
@@ -86,15 +93,15 @@ Also called on first use if isAvailableInEnvironment() returns true.
 Use this to perform any one-time setup operations. For instance, htmlDomTransport implements this to mount a DOM element for log outputs to the page.
 
 ```javascript
-dispatch()
+dispatch();
 ```
 
 dispatch is where you implement your logger. If should match this signature:
 
 ```javascript
 const dispatch = (level, config) => (...args) => {
-   // ...
-}
+  // ...
+};
 ```
 
 **level** is the log level being called (log, debug, error, warn)

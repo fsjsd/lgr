@@ -103,3 +103,5 @@ test("Expected output - meta x2, hard coded color", () => {
     "hello"
   );
 });
+
+test("Mock - recursive function interface", () => {});
