@@ -1,6 +1,6 @@
 {
   "name": "fsjsd-lgr",
-  "version": "0.0.8",
+  "version": "0.1.1",
   "description": "magical javascript logger",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "build:dev": "cross-env NODE_ENV=\"development\" rollup -c \"./scripts/rollup.config.development.js\"",
     "build:prod": "cross-env NODE_ENV=\"production\" rollup -c \"./scripts/rollup.config.production.js\"",
     "demo": "cross-env NODE_ENV=\"demo\" rollup -c \"./scripts/rollup.config.demo.js\" && live-server --open=./demo/ ",
+    "demonode": "cross-env npm run build:dev && node demo/nodedemo.js",
     "test": "npm run build:dev && jest --config ./scripts/jest.config.js",
     "testdev": "npm run build:dev && jest --coverage --watch --config ./scripts/jest.config.js"
   },

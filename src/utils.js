@@ -31,8 +31,16 @@ const getColor = (value, pos) => {
     hue = generateBestHue();
     colorMapCache[value] = hue;
   }
+  /*
+  0 = 0     20
+  1 = 10    10
+  2 = 15    5
+  3 = 17    
+  n = 20
+  */
   //console.log("getColor", { value, pos, hue });
-  return `hsl(${hue}, 70%, ${45 + pos * 20}%)`;
+  //return `hsl(${hue}, 70%, ${45 + pos * 20}%)`;
+  return `hsl(${hue}, 70%, ${45 + pos * 5}%)`;
 };
 
 const getTimeStamp = () => {

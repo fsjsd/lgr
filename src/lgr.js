@@ -57,6 +57,7 @@ const dispatchToTransports = (level, config) => (...args) => {
 
 const levels = ["log", "debug", "error", "warn", "fatal"];
 
+/*
 const outputs = function(config) {
   return {
     log: (...args) => dispatchToTransports("log", config)(...args),
@@ -74,5 +75,25 @@ const lgr = config => outputs(config);
 // so each method can be called directly on the function itself it there is
 // no config to pass through
 levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
+*/
+
+let lgr = null;
+
+lgr = (config = { meta: [] }) => {
+  var newLgr = (newConfig = { meta: [] }) =>
+    lgr({
+      ...config,
+      ...newConfig,
+      meta: [...(config.meta || []), newConfig.meta || []]
+    });
+
+  levels.map(
+    level =>
+      (newLgr[level] = (...args) =>
+        dispatchToTransports(level, config)(...args))
+  );
+
+  return newLgr;
+};
 
 export { lgr, registerTransport, clearTransports };
