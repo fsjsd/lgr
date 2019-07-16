@@ -2,7 +2,8 @@ import { getColor, getTimeStamp } from "../src/utils";
 
 test("getColor tests", () => {
   let firstACol = "hsl(342, 70%, 45%)";
-  let secondACol = "hsl(342, 70%, 65%)";
+  let secondACol = "hsl(342, 70%, 60%)";
+  let thirdACol = "hsl(342, 70%, 50%)";
 
   let colA = getColor("a", 0);
   expect(colA).toBe(firstACol);
@@ -15,7 +16,7 @@ test("getColor tests", () => {
   expect(colAagain).toBe(colA); // should still be same
 
   let colApos2 = getColor("a", 1);
-  expect(colApos2).toBe(secondACol); // 20% darker
+  expect(colApos2).toBe(thirdACol); // 20% darker
 });
 
 test("getTimeStamp tests", () => {

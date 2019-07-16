@@ -13,7 +13,7 @@ test("no transports throws error", () => {
   clearTransports();
   expect.hasAssertions();
   try {
-    lgr.debug("test");
+    lgr({}).debug("test");
   } catch (e) {
     expect(e).toEqual(new Error("lgr: No logging transports defined"));
   }
@@ -48,8 +48,8 @@ test("Expected output - smile", () => {
   expect.hasAssertions();
   clearTransports();
   consoleDuckPunch((...args) => {
-    expect(args[0]).toBe(":)");
-    expect(args[1]).toBe("hello");
+    expect(args[2]).toBe(":)");
+    expect(args[3]).toBe("hello");
   });
   const lgr = lgrBrowser();
   lgr({ smile: true }).debug("hello");
@@ -62,8 +62,8 @@ test("Expected output - timestamp", () => {
     // TODO: trim this it will fail if millisecond
     // gets sliced during op
     let timestamp = getTimeStamp();
-    expect(args[0]).toBe(timestamp);
-    expect(args[1]).toBe("hello");
+    expect(args[2]).toBe(timestamp);
+    expect(args[3]).toBe("hello");
   });
   const lgr = lgrBrowser();
   lgr({ timestamp: true }).debug("hello");
@@ -99,9 +99,9 @@ test("Expected output - meta x2, hard coded color", () => {
     expect(args[3]).toBe("hello");
   });
   const lgr = lgrBrowser();
-  lgr({ meta: [metaLabel, metaLabel2], backgroundColor: metaColor }).debug(
-    "hello"
-  );
+  lgr({ meta: metaLabel, backgroundColor: metaColor })({
+    meta: metaLabel2
+  }).debug("hello");
 });
 
 test("Mock - recursive function interface", () => {});
