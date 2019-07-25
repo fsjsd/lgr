@@ -59,8 +59,8 @@ const levels = ["log", "debug", "error", "warn", "fatal"];
 
 let lgr = null;
 
-// recursion routine to allow config args to be progressively built up
-// by sub routines so lgr(..cnf)(..cnf)(..cnf).debug(...)
+// recursion routine to allow config args to be progressively appended
+// by consuming sub routines so lgr(..cnf)(..cnf)(..cnf).debug(...)
 lgr = (config = { meta: [] }) => {
   var newLgr = (newConfig = { meta: [] }) =>
     lgr({

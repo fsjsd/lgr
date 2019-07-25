@@ -59,10 +59,10 @@ test("Expected output - timestamp", () => {
   expect.hasAssertions();
   clearTransports();
   consoleDuckPunch((...args) => {
-    // TODO: trim this it will fail if millisecond
-    // gets sliced during op
-    let timestamp = getTimeStamp();
-    expect(args[2]).toBe(timestamp);
+    // timestamp trimmed to remove milliseconds for test case - we want to
+    // test the timestamp format was successfully prepended to the output
+    // args
+    expect(args[2].substr(0, 8)).toBe(getTimeStamp().substr(0, 8));
     expect(args[3]).toBe("hello");
   });
   const lgr = lgrBrowser();

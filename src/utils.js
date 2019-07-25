@@ -5,6 +5,19 @@
 // # use golden ratio
 const golden_ratio_conjugate = 0.618033988749895;
 
+/*
+const safeGlobal = name => {
+  const g = globalThis || global || window || self;
+  const set = value => {
+    g[new Symbol(name)] = value;
+  };
+
+  const get = () => {
+    return g[new Symbol(name)];
+  };
+};
+*/
+
 //let h = Math.random(); // # use random start value
 let h = 0.333;
 
