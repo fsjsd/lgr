@@ -57,28 +57,10 @@ const dispatchToTransports = (level, config) => (...args) => {
 
 const levels = ["log", "debug", "error", "warn", "fatal"];
 
-/*
-const outputs = function(config) {
-  return {
-    log: (...args) => dispatchToTransports("log", config)(...args),
-    debug: (...args) => dispatchToTransports("debug", config)(...args),
-    error: (...args) => dispatchToTransports("error", config)(...args),
-    warn: (...args) => dispatchToTransports("warn", config)(...args)
-  };
-};
-
-// declare 'base' logger as a higher order function accepting config
-// as a pass-through argument
-const lgr = config => outputs(config);
-
-// but attach each log method as direct methods onto the base function itself
-// so each method can be called directly on the function itself it there is
-// no config to pass through
-levels.map(level => (lgr[level] = (...args) => outputs()[level](...args)));
-*/
-
 let lgr = null;
 
+// recursion routine to allow config args to be progressively built up
+// by sub routines so lgr(..cnf)(..cnf)(..cnf).debug(...)
 lgr = (config = { meta: [] }) => {
   var newLgr = (newConfig = { meta: [] }) =>
     lgr({
