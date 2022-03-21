@@ -1,7 +1,7 @@
 # lgr
 
 [![Build Status](https://travis-ci.org/fsjsd/lgr.svg?branch=master)](https://travis-ci.org/fsjsd/lgr)
-[![npm version](http://img.shields.io/npm/v/fsjsd-lgr.svg?style=flat)](https://npmjs.org/package/fsjsd-lgr "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/fsjsd-lgr.svg?style=flat)](https://npmjs.org/package/fsjsd-lgr)
 
 ![lgr](https://github.com/fsjsd/lgr/blob/master/docs/readme-header-lgr.jpg?raw=true)
 
