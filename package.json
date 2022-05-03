@@ -33,10 +33,10 @@
   "devDependencies": {
     "@babel/core": "7.5.4",
     "@babel/preset-env": "7.5.4",
-    "babel-jest": "24.8.0",
+    "babel-jest": "24.9.0",
     "cross-env": "5.2.0",
     "enzyme": "3.10.0",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "live-server": "1.2.1",
     "prettier": "1.18.2",
     "rollup": "1.16.4",
